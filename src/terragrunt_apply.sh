@@ -5,9 +5,10 @@ function terragruntApply {
   echo "apply: info: applying Terragrunt configuration in ${tfWorkingDir}"
   applyOutput=$(${tfBinary} apply -auto-approve -input=false ${*} 2>&1)
   
+  applyExitCode=${?}
+
   echo "apply: info: output from Terragrunt apply: ${applyOutput}"
   
-  applyExitCode=${?}
   applyCommentStatus="Failed"
 
   # Exit code of 0 indicates success. Print the output and exit.
